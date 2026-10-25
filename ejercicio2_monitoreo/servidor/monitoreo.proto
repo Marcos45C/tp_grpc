@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package monitoreo;
+
+service MonitorServidor {
+  // El cliente envía un único mensaje.
+  // El servidor responde con una secuencia de reportes.
+  rpc Monitorear(SolicitudMonitoreo) returns (stream ReporteEstado);
+}
+
+message SolicitudMonitoreo {
+}
+
+message ReporteEstado {
+  uint32 numero = 1;
+  double cpu_porcentaje = 2;
+  uint64 ram_disponible_mb = 3;
+  uint64 disco_disponible_gb = 4;
+}
